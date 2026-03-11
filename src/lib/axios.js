@@ -1,7 +1,7 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://aseobifashionbackend.onrender.com/api';
 
 export const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
@@ -26,7 +26,7 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     const message = error.response?.data?.message || error.message || 'Something went wrong';
-    
+
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
       toast.error('Session expired. Please login again.');
@@ -38,7 +38,7 @@ axiosInstance.interceptors.response.use(
     } else {
       toast.error(message);
     }
-    
+
     return Promise.reject(error);
   }
 );
