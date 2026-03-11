@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const Wholesale = () => {
     const [formStep, setFormStep] = useState(1);
@@ -28,10 +29,10 @@ const Wholesale = () => {
 
     return (
         <div className="bg-brand-black min-h-screen text-white font-body pt-24 sm:pt-32 pb-16 sm:pb-24 relative overflow-hidden">
-            <SEO
-                title="Wholesale & Trade Portal"
-                description="Apply for a Moderate's Textile trade account. Access volume pricing, dedicated support, and priority sampling for your business."
-            />
+            <Helmet>
+                <title>Wholesale & Trade Portal - Favour</title>
+                <meta name="description" content="Apply for a Favour's Textile trade account. Access volume pricing, dedicated support, and priority sampling for your business." />
+            </Helmet>
             {/* Background Texture */}
             <div className="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay pointer-events-none z-0"></div>
 
