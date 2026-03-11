@@ -1,0 +1,21 @@
+export const ROUTES = {
+    HOME: '/',
+    SHOP: '/collections',
+    PRODUCT_DETAIL: '/product/:id',
+    PRODUCTS: '/products',
+    CHECKOUT: '/checkout',
+    WHOLESALE: '/wholesale',
+    ABOUT: '/about',
+    SEARCH: '/search',
+    CONTACT: '/contact',
+    FAQ: '/faq',
+    TERMS: '/terms',
+    PRIVACY: '/privacy',
+    // Admin
+    ADMIN_DASHBOARD: '/admin',
+    ADMIN_PRODUCTS: '/admin/products',
+    ADMIN_ORDERS: '/admin/orders',
+    ADMIN_COLLECTIONS: '/admin/collections',
+    ADMIN_DISCOUNTS: '/admin/discounts',
+    ADMIN_NEWSLETTER: '/admin/newsletter',
+};
