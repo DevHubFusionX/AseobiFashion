@@ -36,11 +36,15 @@ const AdminLayout = () => {
 
                     <div className="flex items-center gap-6">
                         <div className="flex flex-col items-end">
-                            <span className="text-xs font-bold tracking-wider">MODERATE ADMIN</span>
-                            <span className="text-[10px] text-brand-gold font-bold uppercase tracking-widest">Superuser</span>
+                            <span className="text-xs font-bold tracking-wider uppercase truncate max-w-[120px]">
+                                {localStorage.getItem('admin') ? JSON.parse(localStorage.getItem('admin')).email.split('@')[0] : 'ADMIN'}
+                            </span>
+                            <span className="text-[10px] text-brand-gold font-bold uppercase tracking-widest">Authorized</span>
                         </div>
                         <div className="w-10 h-10 rounded-full bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center">
-                            <span className="text-brand-gold font-bold text-xs">MA</span>
+                            <span className="text-brand-gold font-bold text-xs">
+                                {localStorage.getItem('admin') ? JSON.parse(localStorage.getItem('admin')).email[0].toUpperCase() : 'A'}
+                            </span>
                         </div>
                     </div>
                 </header>

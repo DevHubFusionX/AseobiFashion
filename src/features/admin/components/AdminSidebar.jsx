@@ -1,9 +1,17 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
+import toast from 'react-hot-toast';
 
 const AdminSidebar = ({ isOpen, setIsOpen }) => {
     const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('admin');
+        toast.success('Logged out successfully');
+        navigate(ROUTES.ADMIN_LOGIN);
+    };
 
     const menuItems = [
         {
@@ -52,11 +60,11 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
             )
         },
         {
-            name: 'Audience',
-            path: ROUTES.ADMIN_NEWSLETTER,
+            name: 'Security',
+            path: ROUTES.ADMIN_SETTINGS,
             icon: (
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
             )
         }
@@ -108,7 +116,17 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
             </nav>
 
             {/* Footer / Logout */}
-            <div className="p-4 border-t border-white/5">
+            <div className="p-4 border-t border-white/5 space-y-2">
+                <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-4 px-4 py-3.5 text-red-500/60 hover:text-red-500 hover:bg-red-500/5 transition-all rounded-sm group"
+                >
+                    <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    {isOpen && <span className="text-xs font-bold uppercase tracking-widest">Terminate Session</span>}
+                </button>
+
                 <button
                     onClick={() => setIsOpen(!isOpen)}
                     className="w-full flex items-center gap-4 px-4 py-3.5 text-white/40 hover:text-white transition-colors"

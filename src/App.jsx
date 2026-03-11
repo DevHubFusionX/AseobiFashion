@@ -32,6 +32,10 @@ const Terms = lazy(() => import('./pages/Terms'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 
 // Admin pages
+const AdminLogin = lazy(() => import('./pages/admin/Login'));
+const ProtectedRoute = lazy(() => import('./components/auth/ProtectedRoute'));
+
+// Admin pages
 const AdminLayout = lazy(() => import('./features/admin/components/AdminLayout'));
 const AdminDashboard = lazy(() => import('./pages/admin/Dashboard'));
 const AdminProducts = lazy(() => import('./pages/admin/Products'));
@@ -39,6 +43,7 @@ const AdminOrders = lazy(() => import('./pages/admin/Orders'));
 const AdminCollections = lazy(() => import('./pages/admin/Collections'));
 const AdminDiscounts = lazy(() => import('./pages/admin/Discounts'));
 const AdminNewsletter = lazy(() => import('./pages/admin/NewsletterSubscribers'));
+const AdminSettings = lazy(() => import('./pages/admin/Settings'));
 
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-brand-black">
@@ -75,14 +80,23 @@ function App() {
                 } />
               </Route>
 
-              {/* Admin Routes - Isolated */}
-              <Route path="/admin" element={<AdminLayout />}>
+              {/* Admin Routes - Isolated & Protected */}
+              <Route path={ROUTES.ADMIN_LOGIN} element={<AdminLogin />} />
+
+              <Route path="/admin" element={
+                <Suspense fallback={<PageLoader />}>
+                  <ProtectedRoute>
+                    <AdminLayout />
+                  </ProtectedRoute>
+                </Suspense>
+              }>
                 <Route index element={<AdminDashboard />} />
                 <Route path="products" element={<AdminProducts />} />
                 <Route path="orders" element={<AdminOrders />} />
                 <Route path="collections" element={<AdminCollections />} />
                 <Route path="discounts" element={<AdminDiscounts />} />
                 <Route path="newsletter" element={<AdminNewsletter />} />
+                <Route path="settings" element={<AdminSettings />} />
               </Route>
             </Routes>
           </Suspense>

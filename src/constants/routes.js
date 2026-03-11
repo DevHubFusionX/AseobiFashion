@@ -12,10 +12,7 @@ export const ROUTES = {
     TERMS: '/terms',
     PRIVACY: '/privacy',
     // Admin
-    ADMIN_DASHBOARD: '/admin',
-    ADMIN_PRODUCTS: '/admin/products',
-    ADMIN_ORDERS: '/admin/orders',
-    ADMIN_COLLECTIONS: '/admin/collections',
-    ADMIN_DISCOUNTS: '/admin/discounts',
     ADMIN_NEWSLETTER: '/admin/newsletter',
+    ADMIN_SETTINGS: '/admin/settings',
+    ADMIN_LOGIN: '/admin/login',
 };
