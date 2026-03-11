@@ -27,7 +27,9 @@ axiosInstance.interceptors.response.use(
   (error) => {
     const message = error.response?.data?.message || error.message || 'Something went wrong';
 
-    if (error.response?.status === 401) {
+    const isLoginRequest = error.config?.url?.includes('/admin/login');
+
+    if (error.response?.status === 401 && !isLoginRequest) {
       localStorage.removeItem('token');
       toast.error('Session expired. Please login again.');
       window.location.href = '/';
