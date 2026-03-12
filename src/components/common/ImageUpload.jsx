@@ -7,7 +7,6 @@ const ImageUpload = ({ value, onChange, multiple = false, label = 'Product Image
     const [uploading, setUploading] = useState(false);
     const [progress, setProgress] = useState(0);
     const [previews, setPreviews] = useState(multiple ? (value || []) : (value ? [value] : []));
-    const [uploadingFiles, setUploadingFiles] = useState(new Set());
 
     const onDrop = async (acceptedFiles) => {
         if (acceptedFiles.length === 0) return;

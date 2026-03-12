@@ -95,7 +95,7 @@ const Materials = () => {
         }
 
         return () => observer.disconnect();
-    }, [visibleCount]);
+    }, [visibleCount, allMaterials.length]);
 
     return (
         <div className="bg-white min-h-screen font-body">
@@ -117,7 +117,7 @@ const Materials = () => {
             {/* Materials Grid */}
             <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 py-16 lg:py-24">
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-                    {materialsData.map((material, idx) => (
+                    {materialsData.map((material) => (
                         <Link
                             key={material.id}
                             to={`/materials/${material.id}`}

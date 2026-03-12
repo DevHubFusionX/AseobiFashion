@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ROUTES } from '../constants/routes';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../hooks/useCart';
 import { useProduct, useProducts } from '../hooks/useProducts';
 import ImageGallery from '../features/products/components/ImageGallery';
 import ColorSelector from '../features/products/components/ColorSelector';
@@ -22,20 +22,10 @@ const ProductDetail = () => {
 
     const product = productData;
 
-    // Remove the productApi.trackView call since it doesn't exist
-
-    if (!product && !isLoading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-white">
-                <div className="text-center">
-                    <p className="text-red-600 mb-3">Product not found</p>
-                    <Link to={ROUTES.PRODUCTS} className="inline-block text-brand-black border border-black/10 hover:border-brand-gold/50 hover:text-brand-gold px-4 py-2 text-xs tracking-widest uppercase transition-colors">Back to Products</Link>
-                </div>
-            </div>
-        );
-    }
-
-    const colorOptions = product?.colors?.map(color => ({ hex: color, name: color })) || [];
+    const colorOptions = useMemo(() => {
+        return product?.colors?.map(color => ({ hex: color, name: color })) || [];
+    }, [product?.colors]);
+    
     const [selectedImage, setSelectedImage] = useState(product?.image);
 
     const allImages = [product?.image];
@@ -79,6 +69,17 @@ const ProductDetail = () => {
     const handleAddToCart = () => {
         addToCart(product, quantity, selectedColor);
     };
+
+    if (!product && !isLoading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-white">
+                <div className="text-center">
+                    <p className="text-red-600 mb-3">Product not found</p>
+                    <Link to={ROUTES.PRODUCTS} className="inline-block text-brand-black border border-black/10 hover:border-brand-gold/50 hover:text-brand-gold px-4 py-2 text-xs tracking-widest uppercase transition-colors">Back to Products</Link>
+                </div>
+            </div>
+        );
+    }
 
     if (isLoading) {
         return (

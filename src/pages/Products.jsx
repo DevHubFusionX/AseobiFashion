@@ -12,19 +12,13 @@ const Products = () => {
     const categoryFromUrl = searchParams.get('category');
     const { ref, inView } = useInView();
 
-    const [selectedCategory, setSelectedCategory] = useState(categoryFromUrl || 'All');
+    const [selectedCategory, setSelectedCategory] = useState(() => categoryFromUrl || 'All');
     const [selectedSort, setSelectedSort] = useState('newest');
     const [priceRange, setPriceRange] = useState({ min: '', max: '' });
     const [selectedColors, setSelectedColors] = useState([]);
     const [inStockOnly, setInStockOnly] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [isFilterOpen, setIsFilterOpen] = useState(false);
-
-    useEffect(() => {
-        if (categoryFromUrl) {
-            setSelectedCategory(categoryFromUrl);
-        }
-    }, [categoryFromUrl]);
 
     // Fetch dynamic filter options from the database
     const { data: filterOptions } = useFilterOptions();

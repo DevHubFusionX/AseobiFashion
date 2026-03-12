@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useMemo } from 'react';
 
 const ImageGallery = ({ images = [], productName, selectedImage: externalSelectedImage, onImageClick }) => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -8,7 +8,10 @@ const ImageGallery = ({ images = [], productName, selectedImage: externalSelecte
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [lastTouch, setLastTouch] = useState({ x: 0, y: 0 });
-  const imageList = images.length > 0 ? images : ['/Hero-background.jpeg'];
+  
+  const imageList = useMemo(() => {
+    return images.length > 0 ? images : ['/Hero-background.jpeg'];
+  }, [images]);
 
   React.useEffect(() => {
     if (externalSelectedImage) {

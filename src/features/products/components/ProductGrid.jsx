@@ -2,7 +2,7 @@ import React from 'react';
 import ProductCard from './ProductCard';
 import ProductSkeleton from './ProductSkeleton';
 
-const ProductGrid = ({ products, selectedCategory, onClearFilter, isLoading }) => {
+const ProductGrid = ({ products, onClearFilter, isLoading }) => {
   if (isLoading) {
     return (
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">

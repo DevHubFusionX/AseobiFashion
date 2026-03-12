@@ -1,7 +1,7 @@
 {
-  "name": "Favour Luxury Textile Archives",
-  "short_name": "Favour",
-  "description": "Premium luxury textiles and archives.",
+  "name": "Aseobi - Premium Nigerian Fashion",
+  "short_name": "Aseobi",
+  "description": "Premium Aseobi materials and Nigerian traditional clothing.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
@@ -18,5 +18,7 @@
       "type": "image/svg+xml"
     }
   ],
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "categories": ["shopping", "fashion", "lifestyle"],
+  "lang": "en-NG"
 }
