@@ -21,28 +21,31 @@ const AdminLayout = () => {
             {/* Main Content Area */}
             <div className={`flex-1 flex flex-col transition-all duration-500 w-full ${isSidebarOpen ? 'lg:pl-72' : 'lg:pl-20'}`}>
                 {/* Top Header */}
-                <header className="h-20 border-b border-white/5 flex items-center justify-between px-4 md:px-8 sticky top-0 bg-[#050505]/80 backdrop-blur-xl z-40">
-                    <div className="flex items-center gap-4">
+                <header className="h-16 sm:h-20 border-b border-white/5 flex items-center justify-between px-3 sm:px-4 md:px-8 sticky top-0 bg-[#050505]/80 backdrop-blur-xl z-40">
+                    <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
                         <button
                             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                            className="p-2 lg:hidden text-white/60 hover:text-white transition-colors"
+                            className="p-2 lg:hidden text-white/60 hover:text-white transition-colors shrink-0"
                         >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                         </button>
-                        <h2 className="text-[10px] md:text-sm font-bold uppercase tracking-[0.2em] text-white/40 truncate max-w-[150px] md:max-w-none">Management Console</h2>
+                        <h2 className="text-[9px] sm:text-[10px] md:text-sm font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white/40 truncate">
+                            <span className="hidden sm:inline">Management Console</span>
+                            <span className="sm:hidden">Console</span>
+                        </h2>
                     </div>
 
-                    <div className="flex items-center gap-6">
-                        <div className="flex flex-col items-end">
-                            <span className="text-xs font-bold tracking-wider uppercase truncate max-w-[120px]">
+                    <div className="flex items-center gap-2 sm:gap-4 md:gap-6 shrink-0">
+                        <div className="hidden xs:flex flex-col items-end">
+                            <span className="text-[10px] sm:text-xs font-bold tracking-wider uppercase truncate max-w-[80px] sm:max-w-[120px]">
                                 {localStorage.getItem('admin') ? JSON.parse(localStorage.getItem('admin')).email.split('@')[0] : 'ADMIN'}
                             </span>
-                            <span className="text-[10px] text-brand-gold font-bold uppercase tracking-widest">Authorized</span>
+                            <span className="text-[8px] sm:text-[10px] text-brand-gold font-bold uppercase tracking-widest">Authorized</span>
                         </div>
-                        <div className="w-10 h-10 rounded-full bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center">
-                            <span className="text-brand-gold font-bold text-xs">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center shrink-0">
+                            <span className="text-brand-gold font-bold text-[10px] sm:text-xs">
                                 {localStorage.getItem('admin') ? JSON.parse(localStorage.getItem('admin')).email[0].toUpperCase() : 'A'}
                             </span>
                         </div>

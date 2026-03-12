@@ -42,17 +42,18 @@ const AdminDashboard = () => {
             </div>
 
             {/* Grid for Stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-4">
                 {statCards.map((stat, i) => (
-                    <div key={i} className="bg-[#0a0a0a] border border-white/5 p-4 sm:p-6 lg:p-8 rounded-sm hover:border-brand-gold/30 transition-colors group relative overflow-hidden">
+                    <div key={i} className="bg-[#0a0a0a] border border-white/5 p-3 sm:p-6 lg:p-8 rounded-sm hover:border-brand-gold/30 transition-colors group relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-24 h-24 bg-brand-gold/5 blur-3xl -mr-12 -mt-12 group-hover:bg-brand-gold/10 transition-colors"></div>
                         <p className="text-[8px] sm:text-[10px] font-bold text-white/40 uppercase tracking-widest mb-2 sm:mb-4 group-hover:text-brand-gold/60 transition-colors">{stat.label}</p>
-                        <div className="flex flex-col sm:flex-row sm:items-end justify-between relative z-10 gap-1">
-                            <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-white">{isLoading ? '...' : stat.value}</h3>
-                            <span className={`text-[8px] font-black uppercase tracking-widest ${stat.status === 'success' ? 'text-green-500' :
+                        <div className="flex flex-col gap-1 relative z-10">
+                            <h3 className="text-lg sm:text-2xl lg:text-3xl font-semibold tracking-tight text-white leading-none">{isLoading ? '...' : stat.value}</h3>
+                            <span className={`text-[8px] sm:text-[8px] font-black uppercase tracking-widest leading-none ${
+                                stat.status === 'success' ? 'text-green-500' :
                                 stat.status === 'warning' ? 'text-red-500 animate-pulse' :
-                                    'text-brand-gold'
-                                }`}>
+                                'text-brand-gold'
+                            }`}>
                                 {stat.trend}
                             </span>
                         </div>
