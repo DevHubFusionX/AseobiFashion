@@ -1,16 +1,31 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
 import toast from 'react-hot-toast';
+import { useEffect } from 'react';
 
 const AdminSidebar = ({ isOpen, setIsOpen }) => {
     const location = useLocation();
     const navigate = useNavigate();
+
+    // Auto-close sidebar on mobile when route changes
+    useEffect(() => {
+        if (window.innerWidth < 1024) {
+            setIsOpen(false);
+        }
+    }, [location.pathname, setIsOpen]);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('admin');
         toast.success('Logged out successfully');
         navigate(ROUTES.ADMIN_LOGIN);
+    };
+
+    const handleLinkClick = () => {
+        // Close sidebar on mobile when clicking any link
+        if (window.innerWidth < 1024) {
+            setIsOpen(false);
+        }
     };
 
     const menuItems = [
@@ -97,6 +112,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
                         <Link
                             key={item.name}
                             to={item.path}
+                            onClick={handleLinkClick}
                             className={`flex items-center gap-4 px-4 py-3.5 rounded-sm transition-all duration-300 group ${isActive
                                 ? 'bg-brand-gold text-brand-black shadow-lg shadow-brand-gold/10'
                                 : 'text-white/40 hover:text-white hover:bg-white/5'
