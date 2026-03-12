@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ROUTES } from '../constants/routes';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../hooks/useCart';
 import ContactForm from '../features/checkout/components/ContactForm';
 import ShippingForm from '../features/checkout/components/ShippingForm';
 import OrderSummary from '../features/checkout/components/OrderSummary';
@@ -13,7 +13,6 @@ import { discountService } from '../services/discountService';
 const Checkout = () => {
     const { cartItems, cartTotal, clearCart } = useCart();
     const { mutateAsync: createOrder, isLoading: isCreating } = useCreateOrder();
-    const navigate = useNavigate();
 
     const [deliveryMethod, setDeliveryMethod] = useState('Delivery'); // 'Delivery' or 'Pickup'
     const [contactData, setContactData] = useState(null);

@@ -226,7 +226,6 @@ const AdminOrders = () => {
     const [activeTab, setActiveTab] = useState('All');
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [lookupCode, setLookupCode] = useState('');
-    const [lookupResult, setLookupResult] = useState(null);
     const [lookupLoading, setLookupLoading] = useState(false);
     const [lookupError, setLookupError] = useState('');
 
@@ -265,7 +264,6 @@ const AdminOrders = () => {
         }
         setLookupLoading(true);
         setLookupError('');
-        setLookupResult(null);
         try {
             // Search orders matching the code suffix
             const { data } = await axiosInstance.get('/orders');
@@ -275,7 +273,6 @@ const AdminOrders = () => {
                 o._id.toLowerCase().includes(code.toLowerCase())
             );
             if (match) {
-                setLookupResult(match);
                 setSelectedOrder(match);
             } else {
                 setLookupError(`No order found matching "${code}"`);

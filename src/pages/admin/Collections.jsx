@@ -111,7 +111,7 @@ const AdminCollections = () => {
                                     Edit
                                 </button>
                                 <button
-                                    onClick={() => handleDelete(collection._id)}
+                                    onClick={() => deleteMutation.mutate(collection._id)}
                                     className="px-4 py-2 border border-red-500/10 text-[10px] font-black uppercase tracking-widest text-red-500/40 hover:text-red-500 hover:bg-red-500/5 transition-all"
                                 >
                                     Delete

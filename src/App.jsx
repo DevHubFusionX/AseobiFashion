@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -14,6 +14,7 @@ import CartDrawer from './features/cart/components/CartDrawer';
 import ScrollToTop from './components/utils/ScrollToTop';
 import WhatsAppFAB from './components/utils/WhatsAppFAB';
 import ErrorBoundary from './components/common/ErrorBoundary';
+import { initializeSEOTracking } from './utils/seoTracking';
 
 import './assets/styles/App.css';
 
@@ -52,6 +53,11 @@ const PageLoader = () => (
 );
 
 function App() {
+  useEffect(() => {
+    // Initialize SEO tracking and analytics
+    initializeSEOTracking();
+  }, []);
+
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
@@ -75,7 +81,8 @@ function App() {
                 <Route path="*" element={
                   <div className="py-40 text-center">
                     <h1 className="text-4xl font-bold mb-4">404 - Page Not Found</h1>
-                    <Link to={ROUTES.HOME} className="text-brand-gold hover:underline">Go back home</Link>
+                    <p className="text-gray-600 mb-4">The page you're looking for doesn't exist.</p>
+                    <Link to={ROUTES.HOME} className="text-brand-gold hover:underline">Return to Aseobi Fashion Home</Link>
                   </div>
                 } />
               </Route>

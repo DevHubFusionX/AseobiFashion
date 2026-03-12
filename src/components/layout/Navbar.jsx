@@ -40,7 +40,7 @@ const Navbar = () => {
                             <div className="relative transform group-hover:scale-105 transition-transform duration-500">
                                 <div className="absolute inset-0 bg-brand-gold blur-2xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
                                 <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center relative z-10">
-                                    <img src="/Logo.svg" alt="TextilePro Logo" className="w-full h-full object-contain filter drop-shadow-2xl brightness-110" />
+                                    <img src="/Logo.svg" alt="Aseobi Logo" className="w-full h-full object-contain filter drop-shadow-2xl brightness-110" />
                                 </div>
                             </div>
                         </Link>
@@ -64,10 +64,10 @@ const Navbar = () => {
 
                     {/* Right Area: Actions */}
                     <div className="flex items-center gap-3 sm:gap-4 text-white font-semibold">
-                        <Link to="/search" className="p-2 text-white/50 hover:text-brand-gold transition-colors">
+                        <Link to="/search" className="p-2 text-white/50 hover:text-brand-gold transition-colors" aria-label="Search products">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                         </Link>
-                        <button onClick={toggleCart} className="relative group p-2 text-white/50 hover:text-brand-gold transition-colors">
+                        <button onClick={toggleCart} className="relative group p-2 text-white/50 hover:text-brand-gold transition-colors" aria-label="Open shopping cart">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
                             {cartCount > 0 && (
                                 <div className="absolute top-1 right-1 w-4 h-4 bg-brand-gold text-[10px] font-bold text-brand-black rounded-full flex items-center justify-center border border-brand-black transform scale-100 group-hover:scale-110 transition-transform shadow-lg">
@@ -87,6 +87,7 @@ const Navbar = () => {
                         <button
                             className="lg:hidden p-1.5 text-white/60 hover:text-brand-gold"
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            aria-label="Toggle mobile menu"
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d={isMobileMenuOpen ? "M6 18L18 6M6 6l18 18" : "M4 6h16M4 12h16m-7 6h7"} />
